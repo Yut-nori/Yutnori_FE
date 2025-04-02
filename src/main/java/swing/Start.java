@@ -116,11 +116,32 @@ public class Start extends JPanel {
             g.drawImage(img, 50, 170, imgWidth, imgHeight, this);
         }
 
+        if (images.get("yut.png") != null) {
+            Image img = images.get("yut.png");
+            int imgWidth = img.getWidth(this);
+            int imgHeight = img.getHeight(this);
+            g.drawImage(img, 100, 40, imgWidth, imgHeight, this);
+        }
+
         if (images.get("mascort.png") != null) {
             Image img = images.get("mascort.png");
             int imgWidth = img.getWidth(this);
             int imgHeight = img.getHeight(this);
             g.drawImage(img, 520, 300, imgWidth, imgHeight, this);
+        }
+
+        if (images.get("mascortAdd.png") != null) {
+            Image img = images.get("mascortAdd.png");
+            int imgWidth = img.getWidth(this);
+            int imgHeight = img.getHeight(this);
+            g.drawImage(img, 1040, 60, imgWidth, imgHeight, this);
+        }
+
+        if (images.get("gameName.png") != null) {
+            Image img = images.get("gameName.png");
+            int imgWidth = img.getWidth(this);
+            int imgHeight = img.getHeight(this);
+            g.drawImage(img, 700, 60, imgWidth, imgHeight, this);
         }
     }
 
