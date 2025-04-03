@@ -1,19 +1,16 @@
-package swing;
+package swing.screen;
+
+import swing.MainFrame;
 
 import java.awt.event.ActionListener;
-import java.io.File;
-import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.URL;
 import java.util.Map;
 
+import static swing.util.Button.createImageButton;
 import static swing.util.File.getFileName;
 import static swing.util.File.imageLoading;
 
@@ -51,21 +48,6 @@ public class Start extends JPanel {
 
         add(startButton);
         add(exitButton);
-    }
-
-    private JButton createImageButton(ImageIcon icon, ActionListener action) {
-        JButton button = new JButton(icon);
-
-        // 버튼을 이미지처럼 보이게 설정
-        button.setBorderPainted(false);
-        button.setContentAreaFilled(false);
-        button.setFocusPainted(false);
-        button.setOpaque(false);
-
-        // 이벤트 추가
-        button.addActionListener(action);
-
-        return button;
     }
 
     @Override
