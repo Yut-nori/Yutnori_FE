@@ -1,5 +1,6 @@
 package swing;
 
+import swing.screen.End;
 import swing.screen.Setting;
 import swing.screen.Start;
 
@@ -14,6 +15,7 @@ public class ScreenManager {
         // 여기에 화면을 추가
         screens.put("start", new Start(mainFrame));
         screens.put("setting", new Setting(mainFrame));
+        screens.put("end", new End(mainFrame));
 
         return screens;
     }
