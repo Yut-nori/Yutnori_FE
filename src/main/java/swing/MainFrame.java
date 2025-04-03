@@ -4,6 +4,7 @@ import swing.gameboard.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Map;
 
 public class MainFrame extends JFrame {
 
@@ -19,18 +20,17 @@ public class MainFrame extends JFrame {
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
 
-        // 패널 생성
-        Start startPanel = new Start(this);
-        Setting settingPanel = new Setting(this);
+
+
+        // 패널 생성 및 등록
+        Map<String, JPanel> screens = ScreenManager.getScreens(this);
+        for (Map.Entry<String, JPanel> entry : screens.entrySet()) {
+            cardPanel.add(entry.getValue(), entry.getKey());
+        }
+
+        // GameBoard 패널 등록
         GameBoard gameBoardPanel = new GameBoard(this);
-
-        // 나중에 다른 게임 화면도 여기에 추가 가능
-
-        // 패널 등록
-        cardPanel.add(startPanel, "start");
-        cardPanel.add(settingPanel, "setting");
         cardPanel.add(gameBoardPanel, "gameBoard");
-
 
         add(cardPanel);
         cardLayout.show(cardPanel, "start");
