@@ -34,7 +34,7 @@ public class Start extends JPanel {
         if (imageNames.contains("startButton.png")) {
             ImageIcon icon = new ImageIcon(getClass().getResource("/start/startButton.png"));
             startButton = createImageButton(icon, e -> {
-                System.out.println("게임 시작!");
+                mainFrame.showCard("setting");
             });
             startButton.setBounds(820, 280, icon.getIconWidth(), icon.getIconHeight());
         }
@@ -43,6 +43,7 @@ public class Start extends JPanel {
             ImageIcon icon = new ImageIcon(getClass().getResource("/start/exitButton.png"));
             exitButton = createImageButton(icon, e -> {
                 System.out.println("게임 종료!");
+                System.exit(0);  // 콘솔 프로그램 종료
             });
             exitButton.setBounds(850, 460, icon.getIconWidth(), icon.getIconHeight());
         }
