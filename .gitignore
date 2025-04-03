@@ -37,3 +37,6 @@ desktop.ini
 # VM crash logs
 hs_err_pid*
 replay_pid*
+
+# === vs code ===
+.vscode

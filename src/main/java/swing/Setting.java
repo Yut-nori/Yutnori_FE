@@ -42,7 +42,7 @@ public class Setting extends JPanel {
             ImageIcon icon = new ImageIcon(getClass().getResource("/setting/startButton.png"));
             startButton = createImageButton(icon, e -> {
                 System.out.println("게임 시작!");
-                //mainFrame.showCard("play")
+                mainFrame.showCard("gameBoard");
             });
             startButton.setBounds(500, 580, icon.getIconWidth(), icon.getIconHeight());
         }

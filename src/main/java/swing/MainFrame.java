@@ -1,5 +1,7 @@
 package swing;
 
+import swing.gameboard.GameBoard;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -20,12 +22,15 @@ public class MainFrame extends JFrame {
         // 패널 생성
         Start startPanel = new Start(this);
         Setting settingPanel = new Setting(this);
+        GameBoard gameBoardPanel = new GameBoard(this);
 
         // 나중에 다른 게임 화면도 여기에 추가 가능
 
         // 패널 등록
         cardPanel.add(startPanel, "start");
         cardPanel.add(settingPanel, "setting");
+        cardPanel.add(gameBoardPanel, "gameBoard");
+
 
         add(cardPanel);
         cardLayout.show(cardPanel, "start");
