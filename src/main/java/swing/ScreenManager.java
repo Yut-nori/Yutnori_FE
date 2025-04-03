@@ -1,5 +1,8 @@
 package swing;
 
+import swing.screen.Setting;
+import swing.screen.Start;
+
 import javax.swing.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
