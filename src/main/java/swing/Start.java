@@ -14,21 +14,20 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Map;
 
+import static swing.util.File.getFileName;
+import static swing.util.File.imageLoading;
+
 public class Start extends JPanel {
-
-    private MainFrame mainFrame;
-    private final Map<String, BufferedImage> images = new HashMap<>();
-
     private final String screenName = "start";
-    private final List<String> imageNames = new ArrayList<>();
+
+    private Map<String, BufferedImage> images = new HashMap<>();
 
     public Start(MainFrame mainFrame) {
-        this.mainFrame = mainFrame;
         setLayout(null);
 
         // 배경 이미지 로딩
-        getFileName();
-        imageLoading();
+        List<String> imageNames = getFileName(screenName);
+        images = imageLoading(imageNames, screenName);
 
         JButton startButton = null;
         JButton exitButton = null;
@@ -66,39 +65,6 @@ public class Start extends JPanel {
         button.addActionListener(action);
 
         return button;
-    }
-
-    private void getFileName() {
-        URL resource = getClass().getResource("/" + screenName);
-        if(resource != null) {
-            File folder = new File(resource.getPath());  // 이미지가 위치한 폴더
-            File[] files = folder.listFiles((dir, name) -> name.endsWith(".png"));
-            if(files != null) {
-                for (File file : files) {
-                    imageNames.add(file.getName());
-                }
-            } else {
-                System.out.println("File not found");
-            }
-        }
-
-    }
-
-    private void imageLoading() {
-        try {
-            for (String imageName : imageNames) {
-                String imagePath = screenName + "/" + imageName;
-                URL imageUrl = getClass().getClassLoader().getResource(imagePath);
-                if (imageUrl != null) {
-                    BufferedImage img = ImageIO.read(imageUrl);
-                    images.put(imageName, img); // 이미지 이름으로 저장
-                } else {
-                    System.err.println("이미지를 찾을 수 없습니다: " + imagePath);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     @Override
