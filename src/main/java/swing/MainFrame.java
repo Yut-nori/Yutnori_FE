@@ -12,8 +12,10 @@ public class MainFrame extends JFrame {
     private JPanel cardPanel;
 
     public MainFrame() {
+
+
         setTitle("YutNori");
-        setSize(1280, 720);
+        setSize(1280, 720 + 30); // 30은 제목 표시줄 높이
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // 화면 중앙 정렬
 

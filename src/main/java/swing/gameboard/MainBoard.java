@@ -7,7 +7,7 @@ class MainBoard extends JPanel {
     public MainBoard() {
         setLayout(null);
         setBackground(Color.WHITE);
-        setBounds(310, 60, 660, 660);
+        setBounds(310, 60, 660, 640);
     }
 
     @Override

@@ -20,7 +20,6 @@ class TopPanel extends JPanel {
         turnLabel.setBounds(0, 0, 660, 60);
 
         // Set panel and label to transparent
-        turnLabel.setOpaque(false);
         setOpaque(false);
 
         add(turnLabel);
