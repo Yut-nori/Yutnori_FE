@@ -1,6 +1,7 @@
-package swing.gameboard;
+package swing.gameBoard;
 
 import swing.MainFrame;
+import swing.gameBoard.leftPanel.LeftPanel;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -46,6 +47,13 @@ public class GameBoard extends JPanel {
         if (images.get("background.png") != null) {
             g.drawImage(images.get("background.png"), 0, 0, getWidth(), getHeight(), this);
         }
+    }
+
+    @Override
+    public void repaint() {
+        // 백엔드한테 데이터를 받아서
+        // Controller controller = new Controller();
+        // controller.getData();
     }
 
 }

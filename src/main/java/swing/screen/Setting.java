@@ -44,6 +44,28 @@ public class Setting extends JPanel {
             ImageIcon icon = new ImageIcon(getClass().getResource("/setting/startButton.png"));
             startButton = createImageButton(icon, e -> {
                 System.out.println("게임 시작!");
+
+                // 데이터를 넘겨서 repaint from backend
+                // gb.repaint();
+
+                /*
+
+                    data = {
+                        playerNum: comboBox.playerNum,
+                        unitNum: comboBox.unitNum,
+                        boardShape: comboBox.boardShape
+                    }
+                    controller.setGameSetting(data);
+
+                    GameBoard gb = new GameBoard(data.playerNum, data.unitNum, data.boardShape);
+                    frame.add(gb);
+                 */
+
+                // 소공 -> 클래스 생성 ~ 소멸 -> 효율적으로 사용
+
+                // 1. showcard를 이용해서 swtich
+                // 2. panel을 뗐다 붙였다 (frame 고정)
+
                 mainFrame.showCard("gameBoard");
             });
             startButton.setBounds(500, 580, icon.getIconWidth(), icon.getIconHeight());

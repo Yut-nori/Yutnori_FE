@@ -1,9 +1,9 @@
-package swing.gameboard;
+package swing.gameBoard.leftPanel;
 
 import javax.swing.*;
 import java.awt.*;
 
-class LeftPanel extends JPanel {
+public class LeftPanel extends JPanel {
     public LeftPanel() {
         setLayout(null);
         setOpaque(false);

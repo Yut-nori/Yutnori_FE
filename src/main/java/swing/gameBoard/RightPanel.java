@@ -1,4 +1,4 @@
-package swing.gameboard;
+package swing.gameBoard;
 
 import javax.swing.*;
 import java.awt.*;

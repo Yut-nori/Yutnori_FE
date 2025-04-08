@@ -1,6 +1,6 @@
 package swing;
 
-import swing.gameboard.GameBoard;
+import swing.gameBoard.GameBoard;
 
 import javax.swing.*;
 import java.awt.*;
@@ -21,8 +21,6 @@ public class MainFrame extends JFrame {
 
         cardLayout = new CardLayout();
         cardPanel = new JPanel(cardLayout);
-
-
 
         // 패널 생성 및 등록
         Map<String, JPanel> screens = ScreenManager.getScreens(this);
