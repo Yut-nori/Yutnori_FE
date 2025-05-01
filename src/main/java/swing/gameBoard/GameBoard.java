@@ -1,7 +1,7 @@
 package swing.gameBoard;
 
-import swing.MainFrame;
 import swing.ScreenManager;
+import swing.gameBoard.RightPanel.RightPanel;
 import swing.gameBoard.leftPanel.LeftPanel;
 
 import javax.swing.*;

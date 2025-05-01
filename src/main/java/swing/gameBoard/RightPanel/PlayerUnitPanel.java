@@ -1,0 +1,28 @@
+package swing.gameBoard.RightPanel;
+
+import javax.swing.*;
+import java.awt.*;
+
+class PlayerUnitPanel extends JPanel {
+
+    public PlayerUnitPanel(String playerName, Color unitColor) {
+        setLayout(new BorderLayout());
+        setOpaque(false);
+
+        JLabel nameLabel = new JLabel(playerName);
+        nameLabel.setForeground(Color.WHITE);
+        nameLabel.setFont(new Font("맑은 고딕", Font.BOLD, 16));
+        nameLabel.setPreferredSize(new Dimension(70, 40));
+        nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        JPanel circlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
+        circlePanel.setOpaque(false);
+
+        for (int i = 0; i < 4; i++) {
+            circlePanel.add(new UnitIcon(unitColor, 30));
+        }
+
+        add(nameLabel, BorderLayout.NORTH);
+        add(circlePanel, BorderLayout.CENTER);
+    }
+}
