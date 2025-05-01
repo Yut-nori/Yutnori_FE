@@ -1,6 +1,7 @@
 package swing.gameBoard;
 
 import swing.MainFrame;
+import swing.ScreenManager;
 import swing.gameBoard.leftPanel.LeftPanel;
 
 import javax.swing.*;
@@ -18,7 +19,7 @@ public class GameBoard extends JPanel {
 
     private Map<String, BufferedImage> images = new HashMap<>();
 
-    public GameBoard(MainFrame mainFrame) {
+    public GameBoard(ScreenManager sm) {
         setLayout(null);
 
         // 배경 이미지 로딩

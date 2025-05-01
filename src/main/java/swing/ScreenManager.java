@@ -1,22 +1,46 @@
 package swing;
 
+import swing.gameBoard.GameBoard;
 import swing.screen.End;
 import swing.screen.Setting;
 import swing.screen.Start;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class ScreenManager {
-    public static Map<String, JPanel> getScreens(MainFrame mainFrame) {
-        Map<String, JPanel> screens = new LinkedHashMap<>();
+    private MainFrame frame;
+    private GameManager gm;
+    private Container container;
 
-        // 여기에 화면을 추가
-        screens.put("start", new Start(mainFrame));
-        screens.put("setting", new Setting(mainFrame));
-        screens.put("end", new End(mainFrame));
+    public ScreenManager(MainFrame frame) {
+        this.frame = frame;
+        this.container = frame.getContentPane();
+        start();
+    }
 
-        return screens;
+    private void switchPanel(JPanel newPanel) {
+        container.removeAll();
+        container.add(newPanel);
+        container.revalidate();
+        container.repaint();
+    }
+
+    public void start() {
+        switchPanel(new Start(this));
+    }
+
+    public void setting() {
+        switchPanel(new Setting(this));
+    }
+
+    public void gameBoard() {
+        switchPanel(new GameBoard(this));
+    }
+
+    public void end() {
+        switchPanel(new End(this));
     }
 }

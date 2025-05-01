@@ -1,6 +1,7 @@
 package swing.screen;
 
 import swing.MainFrame;
+import swing.ScreenManager;
 
 import java.awt.event.ActionListener;
 import java.util.HashMap;
@@ -19,7 +20,7 @@ public class Start extends JPanel {
 
     private Map<String, BufferedImage> images = new HashMap<>();
 
-    public Start(MainFrame mainFrame) {
+    public Start(ScreenManager sm) {
         setLayout(null);
 
         // 배경 이미지 로딩
@@ -31,7 +32,7 @@ public class Start extends JPanel {
         if (imageNames.contains("startButton.png")) {
             ImageIcon icon = new ImageIcon(getClass().getResource("/start/startButton.png"));
             startButton = createImageButton(icon, e -> {
-                mainFrame.showCard("setting");
+                sm.setting();
             });
             startButton.setBounds(820, 280, icon.getIconWidth(), icon.getIconHeight());
         }

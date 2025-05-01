@@ -18,6 +18,7 @@ public class LeftPanel extends JPanel {
         throwControl.setBounds(0, 470, 310, 250);
 
 
+
         add(yutResult);
         add(throwControl);
     }

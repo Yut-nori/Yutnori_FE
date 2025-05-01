@@ -1,6 +1,7 @@
 package swing.screen;
 
 import swing.MainFrame;
+import swing.ScreenManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ public class Setting extends JPanel {
 
     private Map<String, BufferedImage> images = new HashMap<>();
 
-    public Setting(MainFrame mainFrame) {
+    public Setting(ScreenManager sm) {
         setLayout(null);
 
         // 배경 이미지 로딩
@@ -65,8 +66,7 @@ public class Setting extends JPanel {
 
                 // 1. showcard를 이용해서 swtich
                 // 2. panel을 뗐다 붙였다 (frame 고정)
-
-                mainFrame.showCard("gameBoard");
+                sm.gameBoard();
             });
             startButton.setBounds(500, 580, icon.getIconWidth(), icon.getIconHeight());
         }
