@@ -21,6 +21,10 @@ public class ScreenManager {
         start();
     }
 
+    public GameManager getGm() {
+        return gm;
+    }
+
     private void switchPanel(JPanel newPanel) {
         container.removeAll();
         container.add(newPanel);

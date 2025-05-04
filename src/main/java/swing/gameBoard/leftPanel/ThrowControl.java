@@ -1,10 +1,14 @@
 package swing.gameBoard.leftPanel;
 
+import swing.GameManager;
+import swing.gameBoard.GameBoard;
+import swing.util.GlobalButtonListener;
+
 import javax.swing.*;
 import java.awt.*;
 
 class ThrowControl extends JPanel {
-    public ThrowControl() {
+    public ThrowControl(GameManager gm) {
         setLayout(null);
         setOpaque(false);
 
@@ -22,14 +26,8 @@ class ThrowControl extends JPanel {
         randomYutThrowBtn.setBounds(170, 140, 120, 90);
 
         // 버튼 클릭 이벤트 처리
-        designatedYutThrowBtn.addActionListener(e -> {
-            // 윷 던지기 로직을 여기에 추가하세요.
-            System.out.println("지정 윷 던지기 버튼 클릭됨");
-        });
-        randomYutThrowBtn.addActionListener(e -> {
-            // 윷 던지기 로직을 여기에 추가하세요.
-            System.out.println("랜덤 윷 던지기 버튼 클릭됨");
-        });
+        designatedYutThrowBtn.addActionListener(new GlobalButtonListener(gm, "designatedThrow"));
+        randomYutThrowBtn.addActionListener(new GlobalButtonListener(gm, "randomThrow"));
 
         // 버튼을 패널에 추가
         add(designatedYutThrowBtn);
