@@ -2,6 +2,8 @@ package swing.screen;
 
 import swing.MainFrame;
 import swing.ScreenManager;
+import swing.util.GlobalButtonListener;
+import swing.util.ImageRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +13,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static swing.util.Button.createButtonIfExists;
 import static swing.util.Button.createImageButton;
 import static swing.util.File.getFileName;
 import static swing.util.File.imageLoading;
+import static swing.util.ImageRenderer.renderImages;
 
 public class End extends JPanel {
     private final String screenName = "end";
@@ -29,26 +33,19 @@ public class End extends JPanel {
 
         JButton startButton = null;
         JButton exitButton = null;
-        if (imageNames.contains("startButton.png")) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/end/startButton.png"));
-            startButton = createImageButton(icon, e -> {
-                sm.setting();
-            });
-            startButton.setBounds(400, 280, icon.getIconWidth(), icon.getIconHeight());
-        }
+        startButton = createButtonIfExists(
+                imageNames, "startButton.png", "end", 400, 280,
+                new GlobalButtonListener(sm, "settingPage")
+        );
 
-        if (imageNames.contains("exitButton.png")) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/end/exitButton.png"));
-            exitButton = createImageButton(icon, e -> {
-                System.out.println("게임 종료!");
-                System.exit(0);  // 콘솔 프로그램 종료
-            });
-            exitButton.setBounds(470, 460, icon.getIconWidth(), icon.getIconHeight());
-        }
+        exitButton = createButtonIfExists(
+                imageNames, "exitButton.png", "end", 470, 460,
+                new GlobalButtonListener(sm, "exit")
+        );
 
+        if (startButton != null) add(startButton);
+        if (exitButton != null) add(exitButton);
 
-        add(startButton);
-        add(exitButton);
     }
 
     @Override
@@ -59,32 +56,14 @@ public class End extends JPanel {
             g.drawImage(images.get("background.png"), 0, 0, getWidth(), getHeight(), this);
         }
 
-        if (images.get("man.png") != null) {
-            Image img = images.get("man.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 50, 100, imgWidth, imgHeight, this);
-        }
+        Object[][] imageData = {
+                {"man.png", 50, 100},
+                {"woman.png", 850, 100},
+                {"title.png", 480, 30},
+                {"winner.png", 450, 180}
+        };
 
-        if (images.get("woman.png") != null) {
-            Image img = images.get("woman.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 850, 100, imgWidth, imgHeight, this);
-        }
+        renderImages(g, this, images, imageData);
 
-        if (images.get("title.png") != null) {
-            Image img = images.get("title.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 480, 30, imgWidth, imgHeight, this);
-        }
-
-        if (images.get("winner.png") != null) {
-            Image img = images.get("winner.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 450, 180, imgWidth, imgHeight, this);
-        }
     }
 }
