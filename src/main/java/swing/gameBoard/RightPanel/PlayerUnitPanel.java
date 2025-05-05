@@ -19,7 +19,7 @@ class PlayerUnitPanel extends JPanel {
         circlePanel.setOpaque(false);
 
         for (int i = 0; i < 4; i++) {
-            circlePanel.add(new UnitIcon(unitColor, 30));
+            circlePanel.add(new UnitIcon(unitColor));
         }
 
         add(nameLabel, BorderLayout.NORTH);
