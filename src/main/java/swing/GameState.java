@@ -1,24 +1,48 @@
 package swing;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
+import java.util.*;
 
 public class GameState {
-    private List<Integer> yutResults = new ArrayList<>();
+    private Map<Integer, Integer> yutResults;
     private int currentPlayerId;
     private int[][] unitPosition;
 
     private EnumSet<Phase> currentPhase;
+
     //만약 yutResults보다 커지게 되면 button 동작 안하게
     private int buttonClickRemaining = 0;
 
+    private int clickedYutResult = 0;
 
-    public void setYutResults(List<Integer> results) {
-        this.yutResults = new ArrayList<>(results);
+
+    public GameState() {
+        yutResults = new HashMap<>();
+        currentPhase = EnumSet.noneOf(Phase.class);
     }
 
-    public List<Integer> getYutResults() {
+    public void initiate_state(int playerNum, int UnitNum) {
+        yutResults.clear();
+        currentPlayerId = 1;
+        unitPosition = new int[playerNum][UnitNum];
+        currentPhase = EnumSet.noneOf(Phase.class);
+        buttonClickRemaining = 0;
+        clickedYutResult = 0;
+    }
+
+
+    public void setClickedYutResult(int clickedYutResult) {
+        this.clickedYutResult = clickedYutResult;
+    }
+
+    public int getClickedYutResult() {
+        return clickedYutResult;
+    }
+
+    public void setYutResults(Map<Integer, Integer> results) {
+        this.yutResults = new HashMap<>(results);
+    }
+
+    public Map<Integer, Integer> getYutResults() {
         return yutResults;
     }
 

@@ -6,12 +6,19 @@ import javax.swing.*;
 import java.awt.*;
 
 public class GameManager {
-    JPanel container;
-    GameState gameState;
+    private JPanel container;
+    private final GameState gameState;
 
-    public GameManager(JPanel container, GameState gameState) {
-        this.container = container;
+    public GameManager(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void setContainer(JPanel container) {
+        this.container = container;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 
     public void throwYut() {
@@ -27,6 +34,7 @@ public class GameManager {
     }
     public void throwRepaint() {
         //left panel에 위치한 것들 update(repaint)
+        //
     }
 
     public void moveUnitRepaint() {

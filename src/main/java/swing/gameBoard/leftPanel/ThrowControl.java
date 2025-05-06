@@ -13,17 +13,8 @@ class ThrowControl extends JPanel {
         setOpaque(false);
 
         // 윷 던지기 버튼 생성
-        JButton designatedYutThrowBtn = new JButton("<html>지정 윷<br>던지기</html>");
-        designatedYutThrowBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        designatedYutThrowBtn.setBackground(Color.CYAN);
-        designatedYutThrowBtn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        designatedYutThrowBtn.setBounds(20, 140, 120, 90);
-
-        JButton randomYutThrowBtn = new JButton("<html>랜덤 윷<br>던지기</html>");
-        randomYutThrowBtn.setFont(new Font("맑은 고딕", Font.BOLD, 20));
-        randomYutThrowBtn.setBackground(Color.CYAN);
-        randomYutThrowBtn.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
-        randomYutThrowBtn.setBounds(170, 140, 120, 90);
+        JButton designatedYutThrowBtn = createYutButton("지정 윷", 20, 140);
+        JButton randomYutThrowBtn = createYutButton("랜덤 윷", 170, 140);
 
         // 버튼 클릭 이벤트 처리
         designatedYutThrowBtn.addActionListener(new GlobalButtonListener(gm, "designatedThrow"));
@@ -36,10 +27,10 @@ class ThrowControl extends JPanel {
         // 윷 결과 패널 생성
         int recordSpace = 20;
         int recordRadius = 80;
-        YutRecord yutRecord1 = new YutRecord("모");
+        YutRecord yutRecord1 = new YutRecord(gm, 5);
         yutRecord1.setBounds(16, 30, recordRadius, recordRadius);
 
-        YutRecord yutRecord2 = new YutRecord("개");
+        YutRecord yutRecord2 = new YutRecord(gm, 2);
         yutRecord2.setBounds(16 + recordRadius + recordSpace, 30, recordRadius, recordRadius);
 
         YutRecord yutRecord3 = new YutRecord();
@@ -52,9 +43,12 @@ class ThrowControl extends JPanel {
 
     }
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
-        // 여기에 그리기 작업을 추가하세요.
+    private JButton createYutButton(String label, int x, int y) {
+        JButton button = new JButton("<html>" + label + "<br>던지기</html>");
+        button.setFont(new Font("맑은 고딕", Font.BOLD, 20));
+        button.setBackground(Color.CYAN);
+        button.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+        button.setBounds(x, y, 120, 90);
+        return button;
     }
 }
