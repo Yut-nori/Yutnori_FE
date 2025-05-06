@@ -4,12 +4,21 @@ import javax.swing.*;
 import java.awt.*;
 
 class YutResult extends JPanel {
-    public YutResult() {
+    public YutResult(int result) {
         setLayout(null);
         setOpaque(false);
 
         // 윷 결과 패널 생성
-        JLabel resultLabel = new JLabel("도 !");
+        JLabel resultLabel = new JLabel();
+        switch (result) {
+            case -1 -> resultLabel.setText("빽 도!");
+            case 1 -> resultLabel.setText("도");
+            case 2 -> resultLabel.setText("개");
+            case 3 -> resultLabel.setText("걸");
+            case 4 -> resultLabel.setText("윷");
+            case 5 -> resultLabel.setText("모");
+            default -> resultLabel.setText("No Result");
+        }
         resultLabel.setFont(new Font("맑은 고딕", Font.BOLD, 90));
         resultLabel.setForeground(Color.WHITE);
         resultLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -18,7 +27,7 @@ class YutResult extends JPanel {
         resultLabel.setOpaque(false);
 
         // Yut Group
-        YutGroup yutGroup = new YutGroup();
+        YutGroup yutGroup = new YutGroup(result);
         yutGroup.setBounds(0, 195, 320, 250);
 
 

@@ -1,26 +1,65 @@
 package swing.gameBoard.leftPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 class YutRecord extends JPanel {
 
-    private String resultText;
-    private boolean isEmpty;
+    private final String resultText;
+    private final boolean isEmpty;
+    private final int YutResult;
 
     public YutRecord() {
         this.resultText = "";
         this.isEmpty = true;
+        this.YutResult = 0;
         setPreferredSize(new Dimension(80, 80)); // 원 사이즈
         setOpaque(false); // 투명 배경
     }
 
-    public YutRecord(String resultText) {
-        this.resultText = resultText;
+    public YutRecord(GameManager gameManager, int YutResult) {
+        this.YutResult = YutResult;
         this.isEmpty = false;
+        this.resultText = switch (YutResult) {
+            case -1 -> "빽도";
+            case 1 -> "도";
+            case 2 -> "개";
+            case 3 -> "걸";
+            case 4 -> "윷";
+            case 5 -> "모";
+            default -> throw new IllegalStateException("Unexpected value: " + YutResult);
+        };
+
         setPreferredSize(new Dimension(80, 80)); // 원 사이즈
         setOpaque(false); // 투명 배경
+
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (!isEmpty) {
+                    System.out.println("Clicked on: " + resultText);
+                    gameManager.getGameState().setClickedYutResult(YutResult);
+                    //이때, 화살표 기능 추가..?
+                }
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                setCursor(Cursor.getDefaultCursor());
+            }
+        });
     }
+
+
 
     @Override
     protected void paintComponent(Graphics g) {

@@ -5,7 +5,11 @@ import java.awt.*;
 
 class PlayerUnitPanel extends JPanel {
 
-    public PlayerUnitPanel(String playerName, Color unitColor) {
+    /**
+     * 이후에 수정이 필요한 부분
+     * 1. unitNumber의 경우 말판 위에 나가있는 개수만큼 빼줘야함
+     */
+    public PlayerUnitPanel(String playerName, Color unitColor, int unitNumber) {
         setLayout(new BorderLayout());
         setOpaque(false);
 
@@ -18,7 +22,7 @@ class PlayerUnitPanel extends JPanel {
         JPanel circlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         circlePanel.setOpaque(false);
 
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < unitNumber; i++) {
             circlePanel.add(new UnitIcon(unitColor));
         }
 
