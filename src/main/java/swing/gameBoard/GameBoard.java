@@ -3,6 +3,7 @@ package swing.gameBoard;
 import swing.ScreenManager;
 import swing.gameBoard.RightPanel.RightPanel;
 import swing.gameBoard.leftPanel.LeftPanel;
+import swing.util.GlobalButtonListener;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -25,7 +26,6 @@ public class GameBoard extends JPanel {
         // 배경 이미지 로딩
         List<String> imageNames = getFileName(screenName);
         images = imageLoading(imageNames, screenName);
-
 
         // 패널 생성
         MainBoard mainBoard = new MainBoard(5);

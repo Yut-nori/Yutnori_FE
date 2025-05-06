@@ -1,6 +1,8 @@
 package swing.util;
 
 import swing.GameManager;
+import swing.GameState;
+import swing.Phase;
 import swing.ScreenManager;
 
 import java.awt.event.ActionEvent;
@@ -9,6 +11,7 @@ import java.awt.event.ActionListener;
 public class GlobalButtonListener implements ActionListener {
     private ScreenManager screenManager;
     private GameManager gameManager;
+    private GameState gameState;
     private final String actionName;
 
     public GlobalButtonListener(ScreenManager screenManager, String actionName) {
@@ -18,6 +21,12 @@ public class GlobalButtonListener implements ActionListener {
 
     public GlobalButtonListener(GameManager gameManager, String actionName) {
         this.gameManager = gameManager;
+        this.actionName = actionName;
+    }
+
+    public GlobalButtonListener(GameManager gameManager, GameState gameState, String actionName) {
+        this.gameManager = gameManager;
+        this.gameState = gameState;
         this.actionName = actionName;
     }
 
@@ -44,18 +53,12 @@ public class GlobalButtonListener implements ActionListener {
             case "randomThrow":
                 System.out.println("랜덤 윷 던지기 버튼 클릭됨");
                 //gameManager.randomThrow();
+//                if(gameState.contains(Phase.BUTTON_CLICK)
+//                    gm.throwYut();
                 break;
             case "designatedThrow":
                 System.out.println("지정 윷 던지기 버튼 클릭됨");
                 //gameManager.designatedThrow();
-                break;
-            case "clickMoveResult":
-                //움직일 윷의 결과 클릭
-                //이 때 화살표를 통해(?) 그 팀의 unit이 갈 수 있는 위치 표시
-                break;
-            case "clickMoveUnit":
-                //위에 윷의 결과가 클릭되었을 때만 동작해야함.
-                //윷의 결과를 통해 움직일 Unit 클릭했을 때 결과
                 break;
             default:
                 System.out.println("알 수 없는 액션: " + actionName);

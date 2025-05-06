@@ -7,17 +7,31 @@ import java.awt.*;
 
 public class GameManager {
     JPanel container;
+    GameState gameState;
 
-    public GameManager(JPanel panel) {
-        this.container = panel;
+    public GameManager(JPanel container, GameState gameState) {
+        this.container = container;
+        this.gameState = gameState;
     }
 
-    public void throwRepaint() {
+    public void throwYut() {
+        //back에서 호출하고
+        //gameState 업데이트하고
+        //throwRepaint 부르고
+    }
 
+    public void moveUnit(int teamNum, int unitNum) {
+        //back의 함수 호출 with (teamNum, unitNum, state의 click된 yut result);
+        //gameState update
+        //moveUnitRepaint()
+    }
+    public void throwRepaint() {
+        //left panel에 위치한 것들 update(repaint)
     }
 
     public void moveUnitRepaint() {
-
+        throwRepaint();
+        //나머지 unit들 repaint(right panel)
     }
 
     public void switchPanel(JPanel panel) {

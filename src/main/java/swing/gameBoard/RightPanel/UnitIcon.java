@@ -9,6 +9,8 @@ public class UnitIcon extends JComponent {
     private final Color color;
     private final int diameter;
     private final int thickness;
+//    private final int teamNum;
+//    private final int UnitNum;
 
     public UnitIcon(Color color) {
         this.color = color;
@@ -26,6 +28,7 @@ public class UnitIcon extends JComponent {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("말 클릭됨!");
+//                gm.moveUnit(teamNum, UnitNum);
                 // 여기에 콜백 또는 게임 로직 호출
             }
         });
