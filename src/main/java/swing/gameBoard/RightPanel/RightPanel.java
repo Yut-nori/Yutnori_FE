@@ -1,9 +1,11 @@
 package swing.gameBoard.RightPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 
 public class RightPanel extends JPanel {
-    public RightPanel() {
+    public RightPanel(GameManager gm) {
         setOpaque(false);
         setLayout(null);
         setBounds(970, 0, 310, 720);
@@ -13,7 +15,7 @@ public class RightPanel extends JPanel {
         playerUnitTracker.setBounds(0, 0, 310, 720);
 
         // 메뉴 패널 생성
-        MenuPanel menuPanel = new MenuPanel();
+        MenuPanel menuPanel = new MenuPanel(gm);
         menuPanel.setBounds(0, 580, 310, 140);
 
 

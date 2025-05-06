@@ -1,10 +1,13 @@
 package swing.gameBoard.RightPanel;
 
+import swing.GameManager;
+import swing.util.GlobalButtonListener;
+
 import javax.swing.*;
 import java.awt.*;
 
 class MenuPanel extends JPanel {
-    public MenuPanel() {
+    public MenuPanel(GameManager gm) {
         setLayout(null);
         setOpaque(false);
 
@@ -15,6 +18,8 @@ class MenuPanel extends JPanel {
         exitButton.setBackground(Color.LIGHT_GRAY);
         exitButton.setForeground(Color.BLACK);
         exitButton.setBorder(BorderFactory.createLineBorder(Color.BLACK, 2));
+
+        exitButton.addActionListener(new GlobalButtonListener(gm, "exit"));
 
         add(exitButton);
 

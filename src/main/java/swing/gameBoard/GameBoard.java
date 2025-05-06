@@ -30,7 +30,7 @@ public class GameBoard extends JPanel {
         // 패널 생성
         MainBoard mainBoard = new MainBoard(5);
         LeftPanel leftPanel = new LeftPanel(sm.getGm());
-        RightPanel rightPanel = new RightPanel();
+        RightPanel rightPanel = new RightPanel(sm.getGm());
         TopPanel topPanel = new TopPanel();
 
         // 패널 추가
