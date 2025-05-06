@@ -12,6 +12,10 @@ public class GameState {
     //만약 yutResults보다 커지게 되면 button 동작 안하게
     private int buttonClickRemaining = 0;
 
+    /**
+     * 어떤 YutResult를 클릭했는지 setting /
+     * UnitIcon을 클릭할 때 이 값을 기준으로 back에 정보 전달
+     */
     private int clickedYutResult = 0;
 
 
@@ -20,6 +24,10 @@ public class GameState {
         currentPhase = EnumSet.noneOf(Phase.class);
     }
 
+    /**
+     * 재시작 혹은 시작할 때
+     * initiate_state를 사용함으로써 game_state를 초기화
+     */
     public void initiate_state(int playerNum, int UnitNum) {
         yutResults.clear();
         currentPlayerId = 1;
@@ -28,7 +36,6 @@ public class GameState {
         buttonClickRemaining = 0;
         clickedYutResult = 0;
     }
-
 
     public void setClickedYutResult(int clickedYutResult) {
         this.clickedYutResult = clickedYutResult;

@@ -25,6 +25,10 @@ class ThrowControl extends JPanel {
         add(randomYutThrowBtn);
 
         // 윷 결과 패널 생성
+        /**
+         * 이제 이 Record를 버튼을 누를 때마다 클릭했을 때 보이는게 달라지도록 만들어져야함!
+         * gm을 통해서 만들 수 있을듯!
+         */
         int recordSpace = 20;
         int recordRadius = 80;
         YutRecord yutRecord1 = new YutRecord(gm, 5);
