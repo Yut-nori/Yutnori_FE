@@ -3,14 +3,14 @@ package swing;
 import java.util.*;
 
 public class GameState {
-    private int totalPlayerNumber;
-    private int unitNumberPerPlayer;
+    private int totalPlayerNumber = 4;
+    private int unitNumberPerPlayer = 4;
 
     private Map<Integer, Integer> yutResults;
 
 
 
-    private int currentPlayerId;
+    private int currentPlayerId = 1;
     private int[][] unitPosition;
 
     private EnumSet<Phase> currentPhase;
