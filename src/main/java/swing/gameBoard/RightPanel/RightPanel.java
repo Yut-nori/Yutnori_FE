@@ -11,7 +11,7 @@ public class RightPanel extends JPanel {
         setBounds(970, 0, 310, 720);
 
         // 플레이어 유닛 트래커 패널 생성
-        PlayerUnitTracker playerUnitTracker = new PlayerUnitTracker();
+        PlayerUnitTracker playerUnitTracker = new PlayerUnitTracker(gm);
         playerUnitTracker.setBounds(0, 0, 310, 720);
 
         // 메뉴 패널 생성

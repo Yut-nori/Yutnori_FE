@@ -3,7 +3,13 @@ package swing;
 import java.util.*;
 
 public class GameState {
+    private int totalPlayerNumber;
+    private int unitNumberPerPlayer;
+
     private Map<Integer, Integer> yutResults;
+
+
+
     private int currentPlayerId;
     private int[][] unitPosition;
 
@@ -29,12 +35,22 @@ public class GameState {
      * initiate_state를 사용함으로써 game_state를 초기화
      */
     public void initiate_state(int playerNum, int UnitNum) {
+        totalPlayerNumber = playerNum;
+        unitNumberPerPlayer = UnitNum;
         yutResults.clear();
         currentPlayerId = 1;
         unitPosition = new int[playerNum][UnitNum];
         currentPhase = EnumSet.noneOf(Phase.class);
         buttonClickRemaining = 0;
         clickedYutResult = 0;
+    }
+
+    public int getTotalPlayerNumber() {
+        return totalPlayerNumber;
+    }
+
+    public int getUnitNumberPerPlayer() {
+        return unitNumberPerPlayer;
     }
 
     public void setClickedYutResult(int clickedYutResult) {
