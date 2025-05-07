@@ -39,14 +39,19 @@ public class GameState {
         this.totalPlayerNumber = playerNum;
         this.unitNumberPerPlayer = UnitNum;
         this.shape = shape;
-        yutResults.clear();
-        currentPlayerId = 1;
-        unitPosition = new int[playerNum][UnitNum];
+        this.yutResults.clear();
+        this.currentPlayerId = 1;
+        this.unitPosition = new int[playerNum][UnitNum];
         for(int i = 0; i < playerNum; i++)
-            Arrays.fill(unitPosition[i], -1);
-        currentPhase = EnumSet.noneOf(Phase.class);
-        buttonClickRemaining = 0;
-        clickedYutResult = 0;
+            Arrays.fill(this.unitPosition[i], -1);
+        this.unitPosition[0][0] = 3;
+        this.unitNumberPerPosition = new int[playerNum][UnitNum];
+        for(int i = 0; i < playerNum; i++)
+            Arrays.fill(this.unitNumberPerPosition[i], 0);
+        this.unitNumberPerPosition[0][0] = 3;
+        this.currentPhase = EnumSet.noneOf(Phase.class);
+        this.buttonClickRemaining = 0;
+        this.clickedYutResult = 0;
     }
 
     public int getTotalPlayerNumber() {

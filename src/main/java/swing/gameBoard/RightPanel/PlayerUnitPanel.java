@@ -25,17 +25,17 @@ class PlayerUnitPanel extends JPanel {
         circlePanel.setOpaque(false);
 
         int playerNum = switch (playerName) {
-            case "Player 1" -> 1;
-            case "Player 2" -> 2;
-            case "Player 3" -> 3;
-            case "Player 4" -> 4;
-            default -> 0;
+            case "Player 1" -> 0;
+            case "Player 2" -> 1;
+            case "Player 3" -> 2;
+            case "Player 4" -> 3;
+            default -> -1;
         };
         /**
          * player의 back에서 아직 출발하지 않은 Ready 상태의 개수에 있는 것만 출력
          */
         for (int i = 0; i < unitNumber; i++) {
-            int position = gm.getGameState().getUnitPosition()[playerNum - 1][i];
+            int position = gm.getGameState().getUnitPosition()[playerNum][i];
             if(position == -1)
                 circlePanel.add(new UnitIcon(unitColor, playerNum, i, 1));
         }
