@@ -1,5 +1,6 @@
 package swing.screen;
 
+import swing.GameManager;
 import swing.MainFrame;
 import swing.ScreenManager;
 import swing.util.ComboBox;
@@ -52,7 +53,15 @@ public class Setting extends JPanel {
         JButton exitButton = null;
         startButton = createButtonIfExists(
                 imageNames, "startButton.png", "setting", 500, 580,
-                new GlobalButtonListener(sm, "boardPage")
+                e -> {
+                    int selectedPlayerNum = playerComboBox.getSelectedIndex() + 2;
+                    int selectedUnitNum = unitComboBox.getSelectedIndex() + 2;
+                    int selectedShapeNum = shapeComboBox.getSelectedIndex() + 4;
+
+                    GameManager gm = sm.getGm();
+                    gm.getGameState().initiateState(selectedPlayerNum, selectedUnitNum, selectedShapeNum);
+                    sm.gameBoard();
+                }
         );
 
         exitButton = createButtonIfExists(

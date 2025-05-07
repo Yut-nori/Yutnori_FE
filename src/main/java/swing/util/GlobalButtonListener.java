@@ -42,9 +42,6 @@ public class GlobalButtonListener implements ActionListener {
             case "settingPage":
                 screenManager.setting();
                 break;
-            case "boardPage":
-                screenManager.gameBoard();
-                break;
             case "exitPage":
                 screenManager.end();
                 break;

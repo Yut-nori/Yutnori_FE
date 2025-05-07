@@ -41,10 +41,10 @@ class MainBoard extends JPanel {
 //                    UnitPosition.pentagonUnitPositions[i][1],
 //                    Color.BLUE);
 //        }
-        for (int[] pos : UnitPosition.hexagonUnitPositions) {
-
-            addUnit(pos[0], pos[1], Color.BLUE);
-        }
+//        for (int[] pos : UnitPosition.hexagonUnitPositions) {
+//
+//            addUnit(pos[0], pos[1], Color.BLUE);
+//        }
     }
 
     private void addUnit(int x, int y, Color color) {

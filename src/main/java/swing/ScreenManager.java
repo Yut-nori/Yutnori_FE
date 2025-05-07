@@ -19,7 +19,7 @@ public class ScreenManager {
         this.frame = frame;
         this.gm = gm;
         this.container = frame.getContentPane();
-        gameBoard();
+        start();
     }
 
     public GameManager getGm() {

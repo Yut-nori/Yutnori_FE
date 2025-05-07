@@ -5,6 +5,7 @@ import java.util.*;
 public class GameState {
     private int totalPlayerNumber = 4;
     private int unitNumberPerPlayer = 4;
+    private int shape = 4;
 
     private Map<Integer, Integer> yutResults;
 
@@ -34,9 +35,10 @@ public class GameState {
      * 재시작 혹은 시작할 때
      * initiate_state를 사용함으로써 game_state를 초기화
      */
-    public void initiate_state(int playerNum, int UnitNum) {
-        totalPlayerNumber = playerNum;
-        unitNumberPerPlayer = UnitNum;
+    public void initiateState(int playerNum, int UnitNum, int shape) {
+        this.totalPlayerNumber = playerNum;
+        this.unitNumberPerPlayer = UnitNum;
+        this.shape = shape;
         yutResults.clear();
         currentPlayerId = 1;
         unitPosition = new int[playerNum][UnitNum];
@@ -52,6 +54,8 @@ public class GameState {
     public int getUnitNumberPerPlayer() {
         return unitNumberPerPlayer;
     }
+
+    public int getShape() {return shape; }
 
     public void setClickedYutResult(int clickedYutResult) {
         this.clickedYutResult = clickedYutResult;

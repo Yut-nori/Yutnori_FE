@@ -28,7 +28,7 @@ public class GameBoard extends JPanel {
         images = imageLoading(imageNames, screenName);
 
         // 패널 생성
-        MainBoard mainBoard = new MainBoard(6);
+        MainBoard mainBoard = new MainBoard(sm.getGm().getGameState().getShape());
         LeftPanel leftPanel = new LeftPanel(sm.getGm());
         RightPanel rightPanel = new RightPanel(sm.getGm());
         TopPanel topPanel = new TopPanel(sm.getGm());
