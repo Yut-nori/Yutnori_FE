@@ -1,5 +1,7 @@
 package swing.gameBoard.RightPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,7 +11,7 @@ class PlayerUnitPanel extends JPanel {
      * 이후에 수정이 필요한 부분
      * 1. unitNumber의 경우 말판 위에 나가있는 개수만큼 빼줘야함
      */
-    public PlayerUnitPanel(String playerName, Color unitColor, int unitNumber) {
+    public PlayerUnitPanel(GameManager gm, String playerName, Color unitColor, int unitNumber) {
         setLayout(new BorderLayout());
         setOpaque(false);
 
@@ -22,8 +24,20 @@ class PlayerUnitPanel extends JPanel {
         JPanel circlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 10, 5));
         circlePanel.setOpaque(false);
 
+        int playerNum = switch (playerName) {
+            case "Player 1" -> 1;
+            case "Player 2" -> 2;
+            case "Player 3" -> 3;
+            case "Player 4" -> 4;
+            default -> 0;
+        };
+        /**
+         * player의 back에서 아직 출발하지 않은 Ready 상태의 개수에 있는 것만 출력
+         */
         for (int i = 0; i < unitNumber; i++) {
-            circlePanel.add(new UnitIcon(unitColor));
+            int position = gm.getGameState().getUnitPosition()[playerNum - 1][i];
+            if(position == -1)
+                circlePanel.add(new UnitIcon(unitColor, playerNum, i, 1));
         }
 
         add(nameLabel, BorderLayout.NORTH);

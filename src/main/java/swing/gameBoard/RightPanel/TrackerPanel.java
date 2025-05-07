@@ -1,10 +1,12 @@
 package swing.gameBoard.RightPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
 
 class TrackerPanel extends JPanel {
-    public TrackerPanel(int playerNumber, int unitNumber) {
+    public TrackerPanel(GameManager gm, int playerNumber, int unitNumber) {
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         setOpaque(false);
 
@@ -19,7 +21,7 @@ class TrackerPanel extends JPanel {
                 case 4 -> Color.YELLOW;
                 default -> throw new IllegalStateException("Unexpected value: " + i + 1);
             };
-            playerUnitPanels[i] = new PlayerUnitPanel(playerName, playerColor, unitNumber);
+            playerUnitPanels[i] = new PlayerUnitPanel(gm, playerName, playerColor, unitNumber);
         }
 
         for (PlayerUnitPanel p : playerUnitPanels) {

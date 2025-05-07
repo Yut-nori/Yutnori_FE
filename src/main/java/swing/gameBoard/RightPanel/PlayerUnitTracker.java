@@ -21,7 +21,7 @@ class PlayerUnitTracker extends JPanel {
         titleLabel.setBounds(0, 0, 310, 140);
 
         // Player Unit Tracker
-        TrackerPanel trackerPanel = new TrackerPanel(gm.getGameState().getTotalPlayerNumber(), gm.getGameState().getUnitNumberPerPlayer());
+        TrackerPanel trackerPanel = new TrackerPanel(gm, gm.getGameState().getTotalPlayerNumber(), gm.getGameState().getUnitNumberPerPlayer());
         trackerPanel.setBounds(0, 140, 310, 440);
 
         add(titleLabel);

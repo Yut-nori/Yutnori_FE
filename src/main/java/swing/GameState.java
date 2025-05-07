@@ -10,9 +10,9 @@ public class GameState {
     private Map<Integer, Integer> yutResults;
 
 
-
     private int currentPlayerId = 1;
     private int[][] unitPosition;
+    private int[][] unitNumberPerPosition;
 
     private EnumSet<Phase> currentPhase;
 
@@ -42,6 +42,8 @@ public class GameState {
         yutResults.clear();
         currentPlayerId = 1;
         unitPosition = new int[playerNum][UnitNum];
+        for(int i = 0; i < playerNum; i++)
+            Arrays.fill(unitPosition[i], -1);
         currentPhase = EnumSet.noneOf(Phase.class);
         buttonClickRemaining = 0;
         clickedYutResult = 0;
@@ -56,6 +58,14 @@ public class GameState {
     }
 
     public int getShape() {return shape; }
+
+    public int[][] getUnitPosition() {
+        return unitPosition;
+    }
+
+    public int[][] getUnitNumberPerPosition() {
+        return unitNumberPerPosition;
+    }
 
     public void setClickedYutResult(int clickedYutResult) {
         this.clickedYutResult = clickedYutResult;

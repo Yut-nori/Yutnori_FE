@@ -47,8 +47,8 @@ class MainBoard extends JPanel {
 //        }
     }
 
-    private void addUnit(int x, int y, Color color) {
-        UnitIcon unit = new UnitIcon(color);
+    private void addUnit(int playerNum, int unitNum, int x, int y, Color color) {
+        UnitIcon unit = new UnitIcon(color, playerNum, unitNum, 2);
         unit.setBounds(x, y, 30, 30);
         this.add(unit);
     }
