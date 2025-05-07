@@ -50,7 +50,7 @@ public class Setting extends JPanel {
         add(shapeComboBox);
 
         JComboBox<String> testComboBox = createStyledComboBox(
-                new String[]{"지정 윷", "랜덤 윷"}, 800, 330, 200, 70
+                new String[]{"지정 윷", "랜덤 윷"}, 900, 330, 200, 70
         );
         add(testComboBox);
 

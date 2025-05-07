@@ -34,7 +34,7 @@ public class GameManager {
         leftRepaint();
     }
 
-    public void throwDesignatedYut() {
+    public void throwDesignatedYut(int yutResult) {
         //back에서 호출하고
         //gameState 업데이트하고
         leftRepaint();

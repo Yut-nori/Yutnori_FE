@@ -48,12 +48,6 @@ public class GlobalButtonListener implements ActionListener {
                     gameManager.throwYut();
                 }
                 break;
-            case "designatedThrow":
-                System.out.println("지정 윷 던지기 버튼 클릭됨");
-                if(gameState.getCurrentPhase().contains(Phase.BUTTON_CLICK)) {
-                    gameManager.throwDesignatedYut();
-                }
-                break;
             default:
                 System.out.println("알 수 없는 액션: " + actionName);
 

@@ -49,7 +49,7 @@ public class GameState {
             Arrays.fill(this.unitPosition[i], -1);
         this.unitNumberPerPosition = new int[playerNum][UnitNum];
         this.unitNumberPerPosition[0][0] = 3;
-        this.currentPhase = EnumSet.noneOf(Phase.class);
+        this.currentPhase = EnumSet.of(Phase.BUTTON_CLICK);
         this.buttonClickRemaining = 0;
         this.clickedYutResult = 0;
     }
@@ -68,6 +68,10 @@ public class GameState {
 
     public int getShape() {
         return shape;
+    }
+
+    public boolean isTest() {
+        return isTest;
     }
 
     public Map<Integer, Integer> getYutResults() {
