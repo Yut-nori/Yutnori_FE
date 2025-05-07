@@ -1,5 +1,7 @@
 package swing;
 
+import swing.gameBoard.RightPanel.RightPanel;
+import swing.gameBoard.leftPanel.LeftPanel;
 import swing.screen.Start;
 
 import javax.swing.*;
@@ -29,22 +31,33 @@ public class GameManager {
     public void throwYut() {
         //back에서 호출하고
         //gameState 업데이트하고
-        //throwRepaint 부르고
+        leftRepaint();
+    }
+
+    public void throwDesignatedYut() {
+        //back에서 호출하고
+        //gameState 업데이트하고
+        leftRepaint();
     }
 
     public void moveUnit(int teamNum, int unitNum) {
         //back의 함수 호출 with (teamNum, unitNum, state의 click된 yut result);
         //gameState update
-        //moveUnitRepaint()
+        moveUnitRepaint();
     }
-    public void throwRepaint() {
-        //left panel에 위치한 것들 update(repaint)
-        //
+
+    public void leftRepaint() {
+        switchPanel(new LeftPanel(this));
+
+    }
+
+    public void rightRepaint() {
+        switchPanel(new RightPanel(this));
     }
 
     public void moveUnitRepaint() {
-        throwRepaint();
-        //나머지 unit들 repaint(right panel)
+        leftRepaint();
+        rightRepaint();
     }
 
     public void switchPanel(JPanel panel) {
@@ -59,4 +72,6 @@ public class GameManager {
         container.revalidate();
         container.repaint();
     }
+
+
 }

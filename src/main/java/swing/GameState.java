@@ -10,7 +10,7 @@ public class GameState {
     private Map<Integer, Integer> yutResults;
 
 
-    private int currentPlayerId = 1;
+    private int currentPlayer = 1;
     private int[][] unitPosition;
     private int[][] unitNumberPerPosition;
 
@@ -40,18 +40,19 @@ public class GameState {
         this.unitNumberPerPlayer = UnitNum;
         this.shape = shape;
         this.yutResults.clear();
-        this.currentPlayerId = 1;
+        this.currentPlayer = 1;
         this.unitPosition = new int[playerNum][UnitNum];
         for(int i = 0; i < playerNum; i++)
             Arrays.fill(this.unitPosition[i], -1);
-        this.unitPosition[0][0] = 3;
         this.unitNumberPerPosition = new int[playerNum][UnitNum];
-        for(int i = 0; i < playerNum; i++)
-            Arrays.fill(this.unitNumberPerPosition[i], 0);
         this.unitNumberPerPosition[0][0] = 3;
         this.currentPhase = EnumSet.noneOf(Phase.class);
         this.buttonClickRemaining = 0;
         this.clickedYutResult = 0;
+    }
+
+    public void consumeYutResult(int clicked) {
+        if (!yutResults.isEmpty()) yutResults.remove(clicked);
     }
 
     public int getTotalPlayerNumber() {
@@ -62,41 +63,63 @@ public class GameState {
         return unitNumberPerPlayer;
     }
 
-    public int getShape() {return shape; }
-
-    public int[][] getUnitPosition() {
-        return unitPosition;
-    }
-
-    public int[][] getUnitNumberPerPosition() {
-        return unitNumberPerPosition;
-    }
-
-    public void setClickedYutResult(int clickedYutResult) {
-        this.clickedYutResult = clickedYutResult;
-    }
-
-    public int getClickedYutResult() {
-        return clickedYutResult;
-    }
-
-    public void setYutResults(Map<Integer, Integer> results) {
-        this.yutResults = new HashMap<>(results);
+    public int getShape() {
+        return shape;
     }
 
     public Map<Integer, Integer> getYutResults() {
         return yutResults;
     }
 
-    public void consumeYutResult(int clicked) {
-        if (!yutResults.isEmpty()) yutResults.remove(clicked);
-    }
-
-    public void setCurrentPlayer(int playerId) {
-        this.currentPlayerId = playerId;
+    public void setYutResults(Map<Integer, Integer> yutResults) {
+        this.yutResults = yutResults;
     }
 
     public int getCurrentPlayer() {
-        return currentPlayerId;
+        return currentPlayer;
+    }
+
+    public void setCurrentPlayer(int currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
+    public int[][] getUnitPosition() {
+        return unitPosition;
+    }
+
+    public void setUnitPosition(int[][] unitPosition) {
+        this.unitPosition = unitPosition;
+    }
+
+    public int[][] getUnitNumberPerPosition() {
+        return unitNumberPerPosition;
+    }
+
+    public void setUnitNumberPerPosition(int[][] unitNumberPerPosition) {
+        this.unitNumberPerPosition = unitNumberPerPosition;
+    }
+
+    public EnumSet<Phase> getCurrentPhase() {
+        return currentPhase;
+    }
+
+    public void setCurrentPhase(EnumSet<Phase> currentPhase) {
+        this.currentPhase = currentPhase;
+    }
+
+    public int getButtonClickRemaining() {
+        return buttonClickRemaining;
+    }
+
+    public void setButtonClickRemaining(int buttonClickRemaining) {
+        this.buttonClickRemaining = buttonClickRemaining;
+    }
+
+    public int getClickedYutResult() {
+        return clickedYutResult;
+    }
+
+    public void setClickedYutResult(int clickedYutResult) {
+        this.clickedYutResult = clickedYutResult;
     }
 }

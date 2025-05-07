@@ -23,15 +23,9 @@ class MainBoard extends JPanel {
         setOpaque(false);
         this.shape = gm.getGameState().getShape();
         switch (shape) {
-            case 4:
-                setBounds(310, 60, 660, 640);
-                break;
-            case 5:
-                setBounds(315, 70, 690, 690);
-                break;
-            case 6:
-                setBounds(320, 60, 660, 660);
-                break;
+            case 4 -> setBounds(310, 60, 660, 640);
+            case 5 -> setBounds(315, 70, 690, 690);
+            case 6 -> setBounds(320, 60, 660, 660);
         }
 
         List<String> imageNames = getFileName(screenName);

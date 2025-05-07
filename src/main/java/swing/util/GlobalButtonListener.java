@@ -21,12 +21,7 @@ public class GlobalButtonListener implements ActionListener {
 
     public GlobalButtonListener(GameManager gameManager, String actionName) {
         this.gameManager = gameManager;
-        this.actionName = actionName;
-    }
-
-    public GlobalButtonListener(GameManager gameManager, GameState gameState, String actionName) {
-        this.gameManager = gameManager;
-        this.gameState = gameState;
+        this.gameState = gameManager.getGameState();
         this.actionName = actionName;
     }
 
@@ -49,13 +44,15 @@ public class GlobalButtonListener implements ActionListener {
             //board의 동작 - with gameManager
             case "randomThrow":
                 System.out.println("랜덤 윷 던지기 버튼 클릭됨");
-                //gameManager.randomThrow();
-//                if(gameState.contains(Phase.BUTTON_CLICK)
-//                    gm.throwYut();
+                if(gameState.getCurrentPhase().contains(Phase.BUTTON_CLICK)) {
+                    gameManager.throwYut();
+                }
                 break;
             case "designatedThrow":
                 System.out.println("지정 윷 던지기 버튼 클릭됨");
-                //gameManager.designatedThrow();
+                if(gameState.getCurrentPhase().contains(Phase.BUTTON_CLICK)) {
+                    gameManager.throwDesignatedYut();
+                }
                 break;
             default:
                 System.out.println("알 수 없는 액션: " + actionName);
