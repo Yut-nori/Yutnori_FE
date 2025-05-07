@@ -30,7 +30,7 @@ public class GameManager {
 
     public void throwYut() {
         //back에서 호출하고
-        //gameState 업데이트하고
+        //gameState 업데이트하고 -> YutResult, YutRecord, clickRemaining 등등
         leftRepaint();
     }
 
@@ -68,7 +68,7 @@ public class GameManager {
                 break;
             }
         }
-//        container.add(new MainPanel());
+        container.add(panel);
         container.revalidate();
         container.repaint();
     }

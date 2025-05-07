@@ -6,6 +6,7 @@ public class GameState {
     private int totalPlayerNumber = 4;
     private int unitNumberPerPlayer = 4;
     private int shape = 4;
+    private boolean isTest;
 
     private Map<Integer, Integer> yutResults;
 
@@ -25,6 +26,7 @@ public class GameState {
      */
     private int clickedYutResult = 0;
 
+    private String event = "Event";
 
     public GameState() {
         yutResults = new HashMap<>();
@@ -35,10 +37,11 @@ public class GameState {
      * 재시작 혹은 시작할 때
      * initiate_state를 사용함으로써 game_state를 초기화
      */
-    public void initiateState(int playerNum, int UnitNum, int shape) {
+    public void initiateState(int playerNum, int UnitNum, int shape, boolean isTest) {
         this.totalPlayerNumber = playerNum;
         this.unitNumberPerPlayer = UnitNum;
         this.shape = shape;
+        this.isTest = isTest;
         this.yutResults.clear();
         this.currentPlayer = 1;
         this.unitPosition = new int[playerNum][UnitNum];

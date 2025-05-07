@@ -49,6 +49,11 @@ public class Setting extends JPanel {
         );
         add(shapeComboBox);
 
+        JComboBox<String> testComboBox = createStyledComboBox(
+                new String[]{"지정 윷", "랜덤 윷"}, 800, 330, 200, 70
+        );
+        add(testComboBox);
+
         JButton startButton = null;
         JButton exitButton = null;
         startButton = createButtonIfExists(
@@ -57,9 +62,10 @@ public class Setting extends JPanel {
                     int selectedPlayerNum = playerComboBox.getSelectedIndex() + 2;
                     int selectedUnitNum = unitComboBox.getSelectedIndex() + 2;
                     int selectedShapeNum = shapeComboBox.getSelectedIndex() + 4;
+                    boolean selectedTest = testComboBox.getSelectedIndex() == 0 ? true : false;
 
                     GameManager gm = sm.getGm();
-                    gm.getGameState().initiateState(selectedPlayerNum, selectedUnitNum, selectedShapeNum);
+                    gm.getGameState().initiateState(selectedPlayerNum, selectedUnitNum, selectedShapeNum, selectedTest);
                     gm.initiate_back(selectedPlayerNum, selectedUnitNum, selectedShapeNum);
                     sm.gameBoard();
                 }
