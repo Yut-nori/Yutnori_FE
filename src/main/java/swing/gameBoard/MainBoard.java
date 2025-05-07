@@ -36,10 +36,14 @@ class MainBoard extends JPanel {
         images = imageLoading(imageNames, screenName);
 
         //ㅎㅎ 선물
-        for(int i = 0; i < shape * 7 + 1; i++) {
-            addUnit(UnitPosition.pentagonUnitPositions[i][0],
-                    UnitPosition.pentagonUnitPositions[i][1],
-                    Color.BLUE);
+//        for(int i = 0; i < shape * 7 + 1; i++) {
+//            addUnit(UnitPosition.pentagonUnitPositions[i][0],
+//                    UnitPosition.pentagonUnitPositions[i][1],
+//                    Color.BLUE);
+//        }
+        for (int[] pos : UnitPosition.hexagonUnitPositions) {
+
+            addUnit(pos[0], pos[1], Color.BLUE);
         }
     }
 
