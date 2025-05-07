@@ -40,11 +40,9 @@ class YutRecord extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (!isEmpty) {
-                    System.out.println("Clicked on: " + resultText);
-                    gameManager.getGameState().setClickedYutResult(YutResult);
-                    //이때, 화살표 기능 추가..?
-                }
+                System.out.println("Clicked on: " + resultText);
+                gameManager.clickYut(YutResult);
+                //이때, 화살표 기능 추가..?
             }
 
             @Override

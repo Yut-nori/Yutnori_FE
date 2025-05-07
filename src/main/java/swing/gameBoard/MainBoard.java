@@ -18,9 +18,11 @@ class MainBoard extends JPanel {
     private final String screenName = "GameBoard";
     private Map<String, BufferedImage> images = new HashMap<>();
     private final int shape;
+    private final GameManager gm;
     public MainBoard(GameManager gm) {
         setLayout(null);
         setOpaque(false);
+        this.gm = gm;
         this.shape = gm.getGameState().getShape();
         switch (shape) {
             case 4 -> setBounds(310, 60, 660, 640);
@@ -53,7 +55,7 @@ class MainBoard extends JPanel {
     }
 
     private void addUnit(int playerNum, int unitNum, int x, int y, int groupedNum, Color color) {
-        UnitIcon unit = new UnitIcon(color, playerNum, unitNum, groupedNum);
+        UnitIcon unit = new UnitIcon(gm, color, playerNum, unitNum, groupedNum);
         unit.setBounds(x, y, 30, 30);
         this.add(unit);
     }

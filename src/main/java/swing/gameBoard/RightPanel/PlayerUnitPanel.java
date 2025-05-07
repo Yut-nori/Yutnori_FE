@@ -34,10 +34,11 @@ class PlayerUnitPanel extends JPanel {
         /**
          * player의 back에서 아직 출발하지 않은 Ready 상태의 개수에 있는 것만 출력
          */
-        for (int i = 0; i < unitNumber; i++) {
+        int[][] unitPositions = gm.getGameState().getUnitPosition();
+        for (int i = 0; i < unitPositions.length; i++) {
             int position = gm.getGameState().getUnitPosition()[playerNum][i];
             if(position == -1)
-                circlePanel.add(new UnitIcon(unitColor, playerNum, i, 1));
+                circlePanel.add(new UnitIcon(gm, unitColor, playerNum, i, 1));
         }
 
         add(nameLabel, BorderLayout.NORTH);

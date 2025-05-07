@@ -1,5 +1,7 @@
 package swing.gameBoard.RightPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,16 +11,12 @@ public class UnitIcon extends JComponent {
     private final Color color;
     private final int diameter;
     private final int thickness;
-    private final int playerNum;
-    private final int unitNum;
     private final int groupedUnitNum;
 
-    public UnitIcon(Color color, int playerNum, int unitNum, int groupedUnitNum) {
+    public UnitIcon(GameManager gm, Color color, int playerNum, int unitNum, int groupedUnitNum) {
         this.color = color;
         this.diameter = 28;
         this.thickness = 2;
-        this.playerNum = playerNum;
-        this.unitNum = unitNum;
         this.groupedUnitNum = groupedUnitNum;
 
         int fullSize = diameter + thickness;
@@ -32,7 +30,7 @@ public class UnitIcon extends JComponent {
             @Override
             public void mouseClicked(MouseEvent e) {
                 System.out.println("말 클릭됨!");
-                // gm.moveUnit(teamNum, UnitNum);
+                gm.clickUnit(playerNum, unitNum);
             }
         });
     }

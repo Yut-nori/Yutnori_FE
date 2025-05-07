@@ -8,15 +8,8 @@ public class GameState {
     private int shape = 4;
     private boolean isTest;
 
-    private Map<Integer, Integer> yutResults;
-
-
-    private int currentPlayer = 1;
-    private int[][] unitPosition;
-    private int[][] unitNumberPerPosition;
-
-    private EnumSet<Phase> currentPhase;
-
+    private List<Integer> yutResults;
+    private int lastResult;
     //만약 yutResults보다 커지게 되면 button 동작 안하게
     private int buttonClickRemaining = 0;
 
@@ -26,10 +19,18 @@ public class GameState {
      */
     private int clickedYutResult = 0;
 
+    private int currentPlayer = 1;
+    private int[][] unitPosition;
+    private int[][] unitNumberPerPosition;
+
+    private EnumSet<Phase> currentPhase;
+
+
+
     private String event = "Event";
 
     public GameState() {
-        yutResults = new HashMap<>();
+        yutResults = new ArrayList<>();
         currentPhase = EnumSet.noneOf(Phase.class);
     }
 
@@ -43,14 +44,14 @@ public class GameState {
         this.shape = shape;
         this.isTest = isTest;
         this.yutResults.clear();
+        this.lastResult = 1;
         this.currentPlayer = 1;
         this.unitPosition = new int[playerNum][UnitNum];
         for(int i = 0; i < playerNum; i++)
             Arrays.fill(this.unitPosition[i], -1);
         this.unitNumberPerPosition = new int[playerNum][UnitNum];
-        this.unitNumberPerPosition[0][0] = 3;
         this.currentPhase = EnumSet.of(Phase.BUTTON_CLICK);
-        this.buttonClickRemaining = 0;
+        this.buttonClickRemaining = 1;
         this.clickedYutResult = 0;
     }
 
@@ -74,12 +75,20 @@ public class GameState {
         return isTest;
     }
 
-    public Map<Integer, Integer> getYutResults() {
+    public List<Integer> getYutResults() {
         return yutResults;
     }
 
-    public void setYutResults(Map<Integer, Integer> yutResults) {
+    public void setYutResults(List<Integer> yutResults) {
         this.yutResults = yutResults;
+    }
+
+    public int getLastResult() {
+        return lastResult;
+    }
+
+    public void setLastResult(int lastResult) {
+        this.lastResult = lastResult;
     }
 
     public int getCurrentPlayer() {
@@ -128,5 +137,13 @@ public class GameState {
 
     public void setClickedYutResult(int clickedYutResult) {
         this.clickedYutResult = clickedYutResult;
+    }
+
+    public String getEvent() {
+        return event;
+    }
+
+    public void setEvent(String event) {
+        this.event = event;
     }
 }

@@ -16,14 +16,7 @@ class TopPanel extends JPanel {
         setBounds(310, 0, 660, 60);
 
         // Create TextLabel
-        JLabel turnLabel = new JLabel();
-        String player = "Player ";
-        switch(gm.getGameState().getCurrentPlayer()) {
-            case 1 -> turnLabel.setText(player + 1);
-            case 2 -> turnLabel.setText(player + 2);
-            case 3 -> turnLabel.setText(player + 3);
-            case 4 -> turnLabel.setText(player + 4);
-        };
+        JLabel turnLabel = new JLabel(gm.getGameState().getEvent());
         turnLabel.setFont(new Font("Arial", Font.BOLD, 30));
         turnLabel.setForeground(Color.WHITE);
 

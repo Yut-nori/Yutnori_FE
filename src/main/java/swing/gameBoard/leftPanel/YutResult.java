@@ -1,5 +1,7 @@
 package swing.gameBoard.leftPanel;
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
 
