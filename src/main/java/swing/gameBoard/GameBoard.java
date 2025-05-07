@@ -23,6 +23,7 @@ public class GameBoard extends JPanel {
     public GameBoard(ScreenManager sm) {
         setLayout(null);
 
+        sm.getGm().setContainer(this);
         // 배경 이미지 로딩
         List<String> imageNames = getFileName(screenName);
         images = imageLoading(imageNames, screenName);

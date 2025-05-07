@@ -8,9 +8,14 @@ import java.awt.*;
 public class GameManager {
     private JPanel container;
     private final GameState gameState;
+//    private final back객체
 
     public GameManager(GameState gameState) {
         this.gameState = gameState;
+    }
+
+    public void initiate_back(int playerNum, int unitNum, int shape) {
+//        this.back = back();
     }
 
     public void setContainer(JPanel container) {
