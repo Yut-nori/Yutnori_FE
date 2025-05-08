@@ -34,11 +34,8 @@ class YutRecord extends JPanel {
             case 5 -> "모";
             default -> throw new IllegalStateException("Unexpected value: " + YutResult);
         };
-        resultText1 += switch(count) {
-            case 0 -> "";
-            case 1 -> "";
-            default -> "x" + count;
-        };
+        if(count > 1)
+            resultText1 += "x" + count;
 
         this.resultText = resultText1;
         setPreferredSize(new Dimension(80, 80)); // 원 사이즈

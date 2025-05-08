@@ -50,13 +50,18 @@ public class GameManager {
             gameState.getCurrentPhase().remove(Phase.UNIT_CLICK);
             checkAndActivateYutRecordClick();
             moveUnitRepaint();
-            //back의 playerNum를 받아서
-            int backPlayerNum = 0;
-            if(gameState.getCurrentPlayer() != backPlayerNum) {
+
+            if(turnChanged()) {
+                int backPlayerNum = 1;
                 gameState.setCurrentPlayer(backPlayerNum);
-                gameState.setEvent("Player " + gameState.getCurrentPlayer() + "'s turn");
             }
         }
+    }
+
+    //Turn이 바뀌었는지 확인하고 이를 통해서 turn까지 바꿔줌
+    public boolean turnChanged() {
+        int backPlayerNum = 1;
+        return gameState.getCurrentPlayer() != backPlayerNum;
     }
 
     private void checkAndActivateButtonClick() {
@@ -83,6 +88,8 @@ public class GameManager {
         gameState.setLastResult(yutResults.get(yutResults.size() - 1 - gameState.getButtonClickRemaining()));
         checkAndActivateButtonClick();
         checkAndActivateYutRecordClick();
+        if(turnChanged())
+            gameState.setLastResult(-1);
     }
 
     public void clickYut(int yutResult) {
