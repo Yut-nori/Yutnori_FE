@@ -14,6 +14,6 @@ public class MainFrame extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null); // 화면 중앙 정렬
 
-        ScreenManager sm = new ScreenManager(this);
+        ScreenManager sm = new ScreenManager(this, new GameManager(new GameState()));
     }
 }

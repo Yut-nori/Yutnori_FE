@@ -1,8 +1,9 @@
 package swing.gameBoard;
 
-import swing.MainFrame;
 import swing.ScreenManager;
+import swing.gameBoard.RightPanel.RightPanel;
 import swing.gameBoard.leftPanel.LeftPanel;
+import swing.util.GlobalButtonListener;
 
 import javax.swing.*;
 import java.awt.image.BufferedImage;
@@ -22,16 +23,16 @@ public class GameBoard extends JPanel {
     public GameBoard(ScreenManager sm) {
         setLayout(null);
 
+        sm.getGm().setContainer(this);
         // 배경 이미지 로딩
         List<String> imageNames = getFileName(screenName);
         images = imageLoading(imageNames, screenName);
 
-
         // 패널 생성
-        MainBoard mainBoard = new MainBoard();
-        LeftPanel leftPanel = new LeftPanel();
-        RightPanel rightPanel = new RightPanel();
-        TopPanel topPanel = new TopPanel();
+        MainBoard mainBoard = new MainBoard(sm.getGm());
+        LeftPanel leftPanel = new LeftPanel(sm.getGm());
+        RightPanel rightPanel = new RightPanel(sm.getGm());
+        TopPanel topPanel = new TopPanel(sm.getGm());
 
         // 패널 추가
         add(mainBoard);

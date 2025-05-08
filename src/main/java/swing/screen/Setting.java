@@ -1,7 +1,11 @@
 package swing.screen;
 
+import swing.GameManager;
 import swing.MainFrame;
 import swing.ScreenManager;
+import swing.util.ComboBox;
+import swing.util.GlobalButtonListener;
+import swing.util.ImageRenderer;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,9 +15,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static swing.util.Button.createButtonIfExists;
 import static swing.util.Button.createImageButton;
+import static swing.util.ComboBox.createStyledComboBox;
 import static swing.util.File.getFileName;
 import static swing.util.File.imageLoading;
+import static swing.util.ImageRenderer.renderImages;
 
 public class Setting extends JPanel {
     private final String screenName = "setting";
@@ -27,62 +34,50 @@ public class Setting extends JPanel {
         List<String> imageNames = getFileName(screenName);
         images = imageLoading(imageNames, screenName);
 
-        // 🎯 인원 수 콤보박스 (2 ~ 4)
-        JComboBox<String> playerComboBox = new JComboBox<>(new String[]{"2명", "3명", "4명"});
-        playerComboBox.setBounds(500, 215, 300, 70); // 대략 회색 네모 위치에 맞게 조정
-        styleComboBox(playerComboBox);
+        JComboBox<String> playerComboBox = createStyledComboBox(
+                new String[]{"2명", "3명", "4명"}, 500, 215, 300, 70
+        );
         add(playerComboBox);
 
-        // 🎯 말 개수 콤보박스 (2 ~ 5)
-        JComboBox<String> unitComboBox = new JComboBox<>(new String[]{"2개", "3개", "4개", "5개"});
-        unitComboBox.setBounds(500, 330, 300, 70);
-        styleComboBox(unitComboBox);
+        JComboBox<String> unitComboBox = createStyledComboBox(
+                new String[]{"2개", "3개", "4개", "5개"}, 500, 330, 300, 70
+        );
         add(unitComboBox);
+
+        JComboBox<String> shapeComboBox = createStyledComboBox(
+                new String[]{"사각형", "오각형", "육각형"}, 500, 490, 300, 70
+        );
+        add(shapeComboBox);
+
+        JComboBox<String> testComboBox = createStyledComboBox(
+                new String[]{"지정 윷", "랜덤 윷"}, 900, 330, 200, 70
+        );
+        add(testComboBox);
 
         JButton startButton = null;
         JButton exitButton = null;
-        if (imageNames.contains("startButton.png")) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/setting/startButton.png"));
-            startButton = createImageButton(icon, e -> {
-                System.out.println("게임 시작!");
+        startButton = createButtonIfExists(
+                imageNames, "startButton.png", "setting", 500, 580,
+                e -> {
+                    int selectedPlayerNum = playerComboBox.getSelectedIndex() + 2;
+                    int selectedUnitNum = unitComboBox.getSelectedIndex() + 2;
+                    int selectedShapeNum = shapeComboBox.getSelectedIndex() + 4;
+                    boolean selectedTest = testComboBox.getSelectedIndex() == 0 ? true : false;
 
-                // 데이터를 넘겨서 repaint from backend
-                // gb.repaint();
+                    GameManager gm = sm.getGm();
+                    gm.getGameState().initiateState(selectedPlayerNum, selectedUnitNum, selectedShapeNum, selectedTest);
+                    gm.initiate_back(selectedPlayerNum, selectedUnitNum, selectedShapeNum);
+                    sm.gameBoard();
+                }
+        );
 
-                /*
+        exitButton = createButtonIfExists(
+                imageNames, "exitButton.png", "setting", 1030, 570,
+                new GlobalButtonListener(sm, "exit")
+        );
 
-                    data = {
-                        playerNum: comboBox.playerNum,
-                        unitNum: comboBox.unitNum,
-                        boardShape: comboBox.boardShape
-                    }
-                    controller.setGameSetting(data);
-
-                    GameBoard gb = new GameBoard(data.playerNum, data.unitNum, data.boardShape);
-                    frame.add(gb);
-                 */
-
-                // 소공 -> 클래스 생성 ~ 소멸 -> 효율적으로 사용
-
-                // 1. showcard를 이용해서 swtich
-                // 2. panel을 뗐다 붙였다 (frame 고정)
-                sm.gameBoard();
-            });
-            startButton.setBounds(500, 580, icon.getIconWidth(), icon.getIconHeight());
-        }
-
-        if (imageNames.contains("exitButton.png")) {
-            ImageIcon icon = new ImageIcon(getClass().getResource("/setting/exitButton.png"));
-            exitButton = createImageButton(icon, e -> {
-                System.out.println("게임 종료!");
-                System.exit(0);
-            });
-            exitButton.setBounds(1030, 570, icon.getIconWidth(), icon.getIconHeight());
-        }
-
-
-        add(startButton);
-        add(exitButton);
+        if (startButton != null) add(startButton);
+        if (exitButton != null) add(exitButton);
     }
 
     @Override
@@ -93,54 +88,15 @@ public class Setting extends JPanel {
             g.drawImage(images.get("background.png"), 0, 0, getWidth(), getHeight(), this);
         }
 
-        if (images.get("screenName.png") != null) {
-            Image img = images.get("screenName.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 250, 30, imgWidth, imgHeight, this);
-        }
+        Object[][] imageData = {
+                {"screenName.png", 250, 30},
+                {"playerNum.png", 150, 210},
+                {"unitNum.png", 150, 330},
+                {"boardShape.png", 130, 500}
+        };
 
-        if (images.get("playerNum.png") != null) {
-            Image img = images.get("playerNum.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 150, 210, imgWidth, imgHeight, this);
-        }
+        renderImages(g, this, images, imageData);
 
-        if (images.get("unitNum.png") != null) {
-            Image img = images.get("unitNum.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 150, 330, imgWidth, imgHeight, this);
-        }
-
-        if (images.get("boardShape.png") != null) {
-            Image img = images.get("boardShape.png");
-            int imgWidth = img.getWidth(this);
-            int imgHeight = img.getHeight(this);
-            g.drawImage(img, 130, 500, imgWidth, imgHeight, this);
-        }
-    }
-
-    private void styleComboBox(JComboBox<String> comboBox) {
-        comboBox.setFont(new Font("나눔손글씨 붓", Font.PLAIN, 30)); // 글씨를 부드럽게
-        comboBox.setBackground(new Color(193, 144, 94)); // 따뜻한 나무 계열 배경
-        comboBox.setForeground(Color.WHITE); // 글자 흰색
-        comboBox.setFocusable(false);
-        comboBox.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10)); // 내부 여백
-
-        // 드롭다운 항목 색도 같이 조정
-        comboBox.setRenderer(new DefaultListCellRenderer() {
-            @Override
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                Component c = super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                c.setBackground(isSelected ? new Color(160, 120, 80) : new Color(193, 144, 94));
-                c.setForeground(Color.WHITE);
-                setFont(new Font("나눔손글씨 붓", Font.PLAIN, 18));
-                return c;
-            }
-        });
     }
 
 }

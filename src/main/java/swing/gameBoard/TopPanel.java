@@ -1,16 +1,22 @@
 package swing.gameBoard;
 
 
+import swing.GameManager;
+
 import javax.swing.*;
 import java.awt.*;
 
 class TopPanel extends JPanel {
-    public TopPanel() {
+    /**
+     * 이후 추가 이벤트에 따른 값들을 넣고 싶다면
+     * switch문을 만들던가 혹은 다른 방향으로 변환 필요
+     */
+    public TopPanel(GameManager gm) {
         setLayout(null);
         setBounds(310, 0, 660, 60);
 
         // Create TextLabel
-        JLabel turnLabel = new JLabel("Turn: Player 1");
+        JLabel turnLabel = new JLabel(gm.getGameState().getEvent());
         turnLabel.setFont(new Font("Arial", Font.BOLD, 30));
         turnLabel.setForeground(Color.WHITE);
 

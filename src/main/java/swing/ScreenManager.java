@@ -12,13 +12,18 @@ import java.util.Map;
 
 public class ScreenManager {
     private MainFrame frame;
-    private GameManager gm;
+    private final GameManager gm;
     private Container container;
 
-    public ScreenManager(MainFrame frame) {
+    public ScreenManager(MainFrame frame, GameManager gm) {
         this.frame = frame;
+        this.gm = gm;
         this.container = frame.getContentPane();
         start();
+    }
+
+    public GameManager getGm() {
+        return gm;
     }
 
     private void switchPanel(JPanel newPanel) {
