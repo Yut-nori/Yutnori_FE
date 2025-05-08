@@ -21,10 +21,11 @@ class YutRecord extends JPanel {
         setOpaque(false); // 투명 배경
     }
 
-    public YutRecord(GameManager gameManager, int YutResult) {
+    public YutRecord(GameManager gameManager, int YutResult, int count) {
+        String resultText1;
         this.YutResult = YutResult;
         this.isEmpty = false;
-        this.resultText = switch (YutResult) {
+        resultText1 = switch (YutResult) {
             case -1 -> "빽도";
             case 1 -> "도";
             case 2 -> "개";
@@ -33,7 +34,13 @@ class YutRecord extends JPanel {
             case 5 -> "모";
             default -> throw new IllegalStateException("Unexpected value: " + YutResult);
         };
+        resultText1 += switch(count) {
+            case 0 -> "";
+            case 1 -> "";
+            default -> "x" + count;
+        };
 
+        this.resultText = resultText1;
         setPreferredSize(new Dimension(80, 80)); // 원 사이즈
         setOpaque(false); // 투명 배경
 

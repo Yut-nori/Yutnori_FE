@@ -7,6 +7,8 @@ import swing.util.GlobalButtonListener;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 
 import static swing.util.ComboBox.createStyledComboBox;
 
@@ -17,10 +19,10 @@ class ThrowControl extends JPanel {
 
         if(gm.getGameState().isTest()) {
             JComboBox<String> yutComboBox = createStyledComboBox(
-                    new String[]{"빽도", "도", "개", "걸", "윷", "모"}, 20, 140, 120, 70
+                    new String[]{"빽도", "도", "개", "걸", "윷", "모"}, 20, 240, 120, 70
             );
             add(yutComboBox);
-            JButton designatedYutThrowBtn = createYutButton("지정 윷", 150, 140, 150);
+            JButton designatedYutThrowBtn = createYutButton("지정 윷", 150, 240, 150);
             designatedYutThrowBtn.addActionListener(e -> {
                 int yutResult = yutComboBox.getSelectedIndex();
                 if(yutResult == 0) yutResult = -1;
@@ -32,7 +34,7 @@ class ThrowControl extends JPanel {
             add(designatedYutThrowBtn);
         }
         else {
-            JButton randomYutThrowBtn = createYutButton("랜덤 윷", 20, 140, 270);
+            JButton randomYutThrowBtn = createYutButton("랜덤 윷", 20, 240, 270);
             randomYutThrowBtn.addActionListener(new GlobalButtonListener(gm, "randomThrow"));
             add(randomYutThrowBtn);
         }
@@ -44,19 +46,22 @@ class ThrowControl extends JPanel {
          */
         int recordSpace = 20;
         int recordRadius = 80;
-        YutRecord yutRecord1 = new YutRecord(gm, 5);
-        yutRecord1.setBounds(16, 30, recordRadius, recordRadius);
-
-        YutRecord yutRecord2 = new YutRecord(gm, 2);
-        yutRecord2.setBounds(16 + recordRadius + recordSpace, 30, recordRadius, recordRadius);
-
-        YutRecord yutRecord3 = new YutRecord();
-        yutRecord3.setBounds(16 + 2 * recordRadius + 2 * recordSpace, 30, recordRadius, recordRadius);
-
-        // 패널에 추가
-        add(yutRecord1);
-        add(yutRecord2);
-        add(yutRecord3);
+        int showResults = gm.getGameState().getYutResults().size() - gm.getGameState().getButtonClickRemaining();
+        YutRecord[] yutRecords = new YutRecord[6];
+        int[] countYutResults = new int[6];
+        for(int i = 0; i < showResults; i++)
+            countYutResults[gm.getGameState().getYutResults().get(i)]++;
+        for(int i = 0; i < 6; i++) {
+            int yutResult = i;
+            if(i == 0)
+                yutResult = -1;
+            if(countYutResults[i] == 0)
+                yutRecords[i] = new YutRecord();
+            else
+                yutRecords[i] = new YutRecord(gm, yutResult, countYutResults[i]);
+            yutRecords[i].setBounds(16 + recordRadius * (i % 3) + recordSpace * (i % 3), 30 + 100 * (i / 3), recordRadius, recordRadius);
+            add(yutRecords[i]);
+        }
 
     }
 

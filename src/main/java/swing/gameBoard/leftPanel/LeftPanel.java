@@ -17,7 +17,7 @@ public class LeftPanel extends JPanel {
 
         // 던지기 패널 생성
         ThrowControl throwControl = new ThrowControl(gm);
-        throwControl.setBounds(0, 470, 310, 250);
+        throwControl.setBounds(0, 380, 310, 340);
 
 
 
