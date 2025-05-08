@@ -66,7 +66,10 @@ public class Setting extends JPanel {
 
                     GameManager gm = sm.getGm();
                     gm.getGameState().initiateState(selectedPlayerNum, selectedUnitNum, selectedShapeNum, selectedTest);
-                    gm.initiate_back(selectedPlayerNum, selectedUnitNum, selectedShapeNum);
+
+                    // api 호출
+                    gm.apiSetOption(selectedPlayerNum, selectedUnitNum, selectedShapeNum, selectedTest);
+
                     sm.gameBoard();
                 }
         );

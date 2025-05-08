@@ -11,33 +11,43 @@ import java.util.List;
 public class GameManager {
     private JPanel container;
     private final GameState gameState;
-//    private final back객체
+
+    // API 객체 생성
+    private final api.option.OptionAPI optionAPI;
+    private final api.game.GameAPI gameAPI;
+    private final api.restart.RestartAPI restartAPI;
 
     public GameManager(GameState gameState) {
         this.gameState = gameState;
+
+        this.optionAPI = new api.option.OptionAPI();
+        this.gameAPI = new api.game.GameAPI();
+        this.restartAPI = new api.restart.RestartAPI();
     }
 
-    public void initiate_back(int playerNum, int unitNum, int shape) {
-//        this.back = back();
+    // ** API 호출 메서드 **
+    public void apiSetOption(int playerNum, int unitNum, int shape, boolean isTest) {
+        optionAPI.setOption(playerNum, unitNum, shape, isTest);
+    }
+    public void apiThrowYut(int designatedYutResult) {
+        if (designatedYutResult == 0) gameAPI.throwYut(); // 랜덤 윷 던지기 호출
+        else gameAPI.throwYut(designatedYutResult); // 지정 윷 던지기 메서드 호출
+    }
+    public void apiRestart() {
+        restartAPI.restartGame();
+    }
+    public void apiMoveUnit(int selectedYut, int selectedUnit) {
+        gameAPI.moveUnit(selectedYut, selectedUnit);
     }
 
-    public void setContainer(JPanel container) {
-        this.container = container;
-    }
 
-    public GameState getGameState() {
-        return gameState;
-    }
 
-    public void throwYut() {
-        //back에서 호출하고
-        //gameState 업데이트하고 -> YutResult, YutRecord, clickRemaining 등등
-        updateGameStateWhenThrowingYut();
-        leftRepaint();
-    }
 
-    public void throwDesignatedYut(int yutResult) {
-        //back에서 호출하고
+    // 지정 윷 던지기 메서드(오버로딩)
+    public void throwYut(int designatedYutResult) {
+        // [1] api 호출
+        apiThrowYut(designatedYutResult);
+
         //gameState 업데이트하고
         updateGameStateWhenThrowingYut();
         leftRepaint();
@@ -45,7 +55,8 @@ public class GameManager {
 
     public void clickUnit(int playerNum, int unitNum) {
         if(gameState.getCurrentPhase().contains(Phase.UNIT_CLICK)) {
-            //작동 -> back에서 yutResult 등을 업데이트해야함.
+            // 작동 -> back에서 yutResult 등을 업데이트해야함.
+            // apiMoveUnit(selectedYut, selectedUnit);
 
             gameState.getCurrentPhase().remove(Phase.UNIT_CLICK);
             checkAndActivateYutRecordClick();
@@ -57,6 +68,8 @@ public class GameManager {
             }
         }
     }
+
+
 
     //Turn이 바뀌었는지 확인하고 이를 통해서 turn까지 바꿔줌
     public boolean turnChanged() {
@@ -123,5 +136,16 @@ public class GameManager {
         container.add(panel);
         container.revalidate();
         container.repaint();
+    }
+
+
+
+    // ** Getters and Setters **
+    public void setContainer(JPanel container) {
+        this.container = container;
+    }
+
+    public GameState getGameState() {
+        return gameState;
     }
 }

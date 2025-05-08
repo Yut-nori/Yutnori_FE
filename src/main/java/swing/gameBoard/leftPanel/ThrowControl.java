@@ -38,8 +38,8 @@ class ThrowControl extends JPanel {
                 if(gm.getGameState().getCurrentPhase().contains(Phase.BUTTON_CLICK)) {
                     System.out.println("지정 윷 던지기 버튼 + " + yutResult);
 
-                    // 윷 던지기 메서드 호출(인자: 지정한 윷 결과)
-                    gm.throwDesignatedYut(yutResult);
+                    // 윷 던지기 메서드 호출(인자: 지정한 윷 결과 / -1: 빽도, 1: 도, 2: 개, 3: 걸, 4: 윷, 5: 모)
+                    gm.throwYut(yutResult);
                 }
             });
 
@@ -52,6 +52,9 @@ class ThrowControl extends JPanel {
             JButton randomYutThrowBtn = createYutButton("랜덤 윷", 20, 240, 270);
             randomYutThrowBtn.addActionListener(new GlobalButtonListener(gm, "randomThrow"));
             add(randomYutThrowBtn);
+
+            // 윷 던지기 메서드 호출(인자: 랜덤 윷 상태)
+            gm.throwYut(0);
         }
 
         // [2] 윷 결과 패널 생성
