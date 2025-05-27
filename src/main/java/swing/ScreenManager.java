@@ -9,8 +9,8 @@ import javax.swing.*;
 import java.awt.*;
 
 public class ScreenManager {
-    private MainFrame frame;
-    private Container container;
+    private final MainFrame frame;
+    private final Container container;
     private final GameManager gm;
 
     // ** Constructor **
