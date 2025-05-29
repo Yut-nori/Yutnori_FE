@@ -1,7 +1,7 @@
 import javax.swing.*;
 
 import controller.BoardManager;
-import swing.MainFrame;
+import screen.MainFrame;
 import view.GameView;
 
 public class Main {
