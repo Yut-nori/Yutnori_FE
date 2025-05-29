@@ -12,7 +12,7 @@ import java.util.Map;
 
 import static util.File.getFileName;
 import static util.File.imageLoading;
-import static util.Button.createButtonIfExists;
+import static util.ButtonUtil.createButtonIfExists;
 
 public class Start extends JPanel {
 

@@ -10,7 +10,7 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Map;
 
-import static util.Button.createButtonIfExists;
+import static util.ButtonUtil.createButtonIfExists;
 import static util.File.getFileName;
 import static util.File.imageLoading;
 import static util.ImageRenderer.renderImages;

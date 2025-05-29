@@ -1,4 +1,4 @@
-package api.option;
+package api;
 
 import controller.PlayManager;
 

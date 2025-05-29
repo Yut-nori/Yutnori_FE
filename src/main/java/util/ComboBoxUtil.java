@@ -3,7 +3,7 @@ package util;
 import javax.swing.*;
 import java.awt.*;
 
-public class ComboBox {
+public class ComboBoxUtil {
     public static JComboBox<String> createStyledComboBox(String[] items, int x, int y, int width, int height) {
         JComboBox<String> comboBox = new JComboBox<>(items);
         comboBox.setBounds(x, y, width, height);

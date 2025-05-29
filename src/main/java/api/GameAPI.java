@@ -1,9 +1,7 @@
-package api.game;
+package api;
 
-import api.option.OptionAPI;
 import controller.PlayManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GameAPI {

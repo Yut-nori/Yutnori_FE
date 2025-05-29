@@ -1,5 +1,7 @@
 package gameControl;
 
+import api.GameAPI;
+import api.OptionAPI;
 import screen.gameBoard.centerPanel.MainBoard;
 import screen.gameBoard.topPanel.TopPanel;
 import screen.gameBoard.leftPanel.LeftPanel;
@@ -19,16 +21,16 @@ public class GameManager {
     private ScreenManager screenManager;
 
     // ** API 객체 변수 **
-    private final api.option.OptionAPI optionAPI;
-    private final api.game.GameAPI gameAPI;
+    private final OptionAPI optionAPI;
+    private final GameAPI gameAPI;
     private final api.restart.RestartAPI restartAPI;
 
     // ** Constructor **
     public GameManager(GameState gameState) {
         this.gameState = gameState;
 
-        this.optionAPI = new api.option.OptionAPI();
-        this.gameAPI = new api.game.GameAPI();
+        this.optionAPI = new OptionAPI();
+        this.gameAPI = new GameAPI();
         this.restartAPI = new api.restart.RestartAPI();
     }
 

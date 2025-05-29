@@ -3,7 +3,7 @@ package util;
 import javax.swing.*;
 import java.awt.event.ActionListener;
 
-public class Button {
+public class ButtonUtil {
     public static JButton createImageButton(ImageIcon icon, ActionListener action) {
         JButton button = new JButton(icon);
 
@@ -31,7 +31,7 @@ public class Button {
                                                String folderName, int x, int y, ActionListener listener) {
         if (!imageNames.contains(imageName)) return null;
 
-        ImageIcon icon = new ImageIcon(Button.class.getResource("/" + folderName + "/" + imageName));
+        ImageIcon icon = new ImageIcon(ButtonUtil.class.getResource("/" + folderName + "/" + imageName));
         JButton button = createImageButton(icon, listener);
         button.setBounds(x, y, icon.getIconWidth(), icon.getIconHeight());
         return button;

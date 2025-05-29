@@ -10,8 +10,8 @@ import java.awt.image.BufferedImage;
 import java.util.List;
 import java.util.Map;
 
-import static util.Button.createButtonIfExists;
-import static util.ComboBox.createStyledComboBox;
+import static util.ButtonUtil.createButtonIfExists;
+import static util.ComboBoxUtil.createStyledComboBox;
 import static util.File.getFileName;
 import static util.File.imageLoading;
 import static util.ImageRenderer.renderImages;

@@ -6,7 +6,7 @@ import gameControl.GlobalButtonListener;
 import javax.swing.*;
 import java.awt.*;
 
-import static util.ComboBox.createStyledComboBox;
+import static util.ComboBoxUtil.createStyledComboBox;
 
 class ThrowControl extends JPanel {
 
